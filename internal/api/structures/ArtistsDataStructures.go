@@ -1,4 +1,4 @@
-package api
+package structures
 
 type ArtistsAPI struct {
 	Artists   string `json:"artists"`   //api URL
@@ -46,3 +46,7 @@ type ArtistFullData struct {
 	ConcertDates ArtistsConcertDates `json:"artistsConcertDates"`
 	Relations    ArtistsRealtion     `json:"artistsRelations"`
 }
+
+
+
+
