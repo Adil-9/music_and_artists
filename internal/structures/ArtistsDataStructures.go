@@ -7,6 +7,11 @@ type ArtistsAPI struct {
 	Relation  string `json:"relation"`  //api URL
 }
 
+type Artists struct {
+	ArtistsAPI   ArtistsAPI
+	ArtistsArray []Artist
+}
+
 type Artist struct {
 	Id              int      `json:"id"`
 	Image           string   `json:"image"`
@@ -46,7 +51,3 @@ type ArtistFullData struct {
 	ConcertDates ArtistsConcertDates `json:"artistsConcertDates"`
 	Relations    ArtistsRealtion     `json:"artistsRelations"`
 }
-
-
-
-
