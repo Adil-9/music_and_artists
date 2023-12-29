@@ -10,7 +10,7 @@ import (
 
 var RedisClient *redis.Client
 
-//initializing redis client to send data in cache
+// initializing redis client to send data in cache
 func RedisClientInit() {
 	redisConfFile, err := os.ReadFile("internal/cache/redisConfig.yaml")
 	if err != nil {

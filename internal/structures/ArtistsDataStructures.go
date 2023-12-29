@@ -21,7 +21,7 @@ type Artist struct {
 	FirstAlbum      string   `json:"firstAlbum"`
 	LocationsAPI    string   `json:"locations"`    //api URL
 	ConcertDatesAPI string   `json:"concertDates"` //api URL
-	RelationsAPI    string   `json:"realtions"`    //api URL
+	RelationsAPI    string   `json:"relations"`    //api URL
 }
 
 type ArtistsLocation struct {
