@@ -9,7 +9,6 @@ import (
 func main() {
 
 	logger.Init()
-
 	cache.RedisClientInit()
 
 	server.StartConfigureServer()
