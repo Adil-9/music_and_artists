@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music</title>
+    <link rel="stylesheet" href="../static/homepage.css">
+    <!-- <link rel="stylesheet" href="/static/homepage.css"> -->
+</head>
+
+<body>
+    {{range .ArtistsArray}}
+    <a href="artist?id={{.Id}}">
+        <div class="card">
+            <img src="{{.Image}}" alt="Card Image">
+            <div class="card-content">
+                <p>{{.Name}}</p>
+                <p>{{.Members}}</p>
+                <p>{{.FirstAlbum}}</p>
+            </div>
+        </div>
+    </a>
+    {{end}}
+
+    <!-- Repeat for additional cards -->
+
+</body>
+
+</html>

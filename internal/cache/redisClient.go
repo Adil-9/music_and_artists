@@ -24,5 +24,5 @@ func RedisClientInit() {
 	}
 
 	RedisClient = redis.NewClient(&redisClt)
-
+	// logger.ErrorLog.Println("check 2")
 }

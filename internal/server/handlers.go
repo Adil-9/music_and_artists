@@ -27,7 +27,7 @@ func homePage() gin.HandlerFunc {
 			return
 		}
 		// c.JSON(200, artistsData)
-		c.IndentedJSON(200, artistsData)
+		c.HTML(http.StatusOK, "HomePage.html", artistsData)
 	}
 }
 
