@@ -53,7 +53,7 @@ func artistPage() gin.HandlerFunc {
 			return
 		}
 
-		artistData, err := api.GetSingleArtistData(artistsData.ArtistsAPI, id)
+		artistData, err := api.GetSingleArtistFullData(artistsData.ArtistsAPI, id)
 		if err != nil && err.Error() == api.ErrorArtistDoesNotExist {
 			if err.Error() == api.ErrorArtistDoesNotExist {
 				artistData.Error = "Page not found"
