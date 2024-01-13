@@ -20,9 +20,14 @@
                 <div class="artist-image">
                     <img src="{{.Image}}" alt="artist?id={{.Id}}">
                 </div>
-                <div class="artist-name">{{.Name}}</div>
-                <div class="artist-name">{{.Members}}</div>
-                <div class="artist-name">{{.FirstAlbum}}</div>
+                <div class="artist-name">Group/Artist name: {{.Name}}</div>
+                <div class="artist-name">Members: 
+                    {{range .Members}}
+                        {{.}}
+                    {{end}}
+                </div>
+                <div class="artist-name">First Album: {{.FirstAlbum}}</div>
+                <div class="artist-name">Was/Were created at {{.CreationDate}}</div>
             </div>
         </a>
         {{end}}
