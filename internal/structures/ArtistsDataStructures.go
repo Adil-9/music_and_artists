@@ -8,11 +8,13 @@ type ArtistsAPI struct {
 }
 
 type Artists struct {
+	Error        string
 	ArtistsAPI   ArtistsAPI
 	ArtistsArray []Artist
 }
 
 type Artist struct {
+	Error           string
 	Id              int      `json:"id"`
 	Image           string   `json:"image"`
 	Name            string   `json:"name"`

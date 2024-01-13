@@ -16,14 +16,16 @@ func homePage() gin.HandlerFunc {
 		artistsData.ArtistsAPI, err = api.GetArtistsAPI()
 		if err != nil {
 			// c.Status(http.StatusInternalServerError)
-			c.JSON(500, gin.H{"error": "Internal server error"})
+			artistsData.Error = "Internal server error"
+			c.HTML(500, "HomePage.html", artistsData)
 			return
 		}
 
 		artistsData.ArtistsArray, err = api.GetArtistsData(artistsData.ArtistsAPI)
 		if err != nil {
 			// c.Status(http.StatusInternalServerError)
-			c.JSON(500, gin.H{"error": "Internal server error"})
+			artistsData.Error = "Internal server error"
+			c.HTML(500, "HomePage.html", artistsData)
 			return
 		}
 		// c.JSON(200, artistsData)
@@ -46,21 +48,24 @@ func artistPage() gin.HandlerFunc {
 		artistsData.ArtistsAPI, err = api.GetArtistsAPI()
 		if err != nil {
 			// c.Status(http.StatusInternalServerError)
-			c.JSON(500, gin.H{"error": "Internal server error"})
+			artistsData.Error = "Internal server error"
+			c.HTML(500, "SingleArtist.html", artistsData)
 			return
 		}
 
 		artistData, err := api.GetSingleArtistData(artistsData.ArtistsAPI, id)
-		if err != nil {
-			if err.Error() == http.StatusText(http.StatusNotFound) {
-				c.JSON(404, gin.H{"error": "Page not found"})
+		if err != nil && err.Error() == api.ErrorArtistDoesNotExist {
+			if err.Error() == api.ErrorArtistDoesNotExist {
+				artistData.Error = "Page not found"
+				c.HTML(404, "SingleArtist.html", artistData)
 				return
 			}
 			// c.Status(http.StatusInternalServerError)
-			c.JSON(500, gin.H{"error": "Internal server error"})
+			artistData.Error = "Internal server error"
+			c.HTML(500, "SingleArtist.html", artistData)
 			return
 		}
 
-		c.IndentedJSON(200, artistData)
+		c.HTML(200, "SingleArtist.html", artistData)
 	}
 }

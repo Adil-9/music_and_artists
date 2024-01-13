@@ -23,6 +23,7 @@ const (
 	errorReadingBody            = "Error reading body:"
 	errorUnmarshalingBody       = "Error unmarshalling body:"
 	errorMarshallingData        = "Error marshaling data:"
+	ErrorArtistDoesNotExist     = "Artist does not exits"
 )
 
 const artistsApiAPI = "https://groupietrackers.herokuapp.com/api"
@@ -71,14 +72,6 @@ func GetArtistsAPI() (structures.ArtistsAPI, error) {
 		logger.ErrorLog.Println(errorUnmarshalingBody, err)
 		return artistsAPI, err
 	}
-
-	// marshaledData, err := json.Marshal(artistsAPI)
-	// if err != nil {
-	// 	logger.ErrorLog.Println(errorMarshallingData, err)
-	// } else {
-	// 	//setting time duration for cache expareation as 10 min and sending data to cache
-	// 	cache.RedisClient.Set(context.Background(), artistsApiAPI, marshaledData, time.Minute*10)
-	// }
 
 	return artistsAPI, nil
 }
@@ -141,7 +134,7 @@ func GetSingleArtistData(ArtistsApi structures.ArtistsAPI, id string) (structure
 	defer cancel()
 
 	link := fmt.Sprintf("%s/%s", ArtistsApi.Artists, id)
-	
+
 	data, err := cache.RedisClient.Get(ctx, link).Result()
 	if err == redis.Nil { //key does not exist
 		//do nothing
@@ -172,6 +165,11 @@ func GetSingleArtistData(ArtistsApi structures.ArtistsAPI, id string) (structure
 	}
 
 	body, err := io.ReadAll(resp.Body)
+
+	if len(body) == 126 {
+		return Artist, errors.New(ErrorArtistDoesNotExist)
+	}
+
 	if err != nil {
 		logger.ErrorLog.Println(errorReadingBody, err)
 		return Artist, err
