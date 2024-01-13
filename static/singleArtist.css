@@ -1,0 +1,33 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    width: 100%;
+}
+
+.text {
+    max-width: 70%;
+    padding-right: 20px;
+}
+
+.image {
+    width: 20%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20%;
+}
+
+.image img {
+    width: 100%;
+    height: auto;
+    border-radius: 20%;
+}

@@ -46,3 +46,7 @@ body {
     color: #333;
     font-weight: bold;
 }
+
+a {
+    text-decoration: none;
+}
