@@ -12,15 +12,42 @@
     {{else}}
     <div class="container">
         <div class="text">
-            <h1>{{.Name}}</h1>
-            <p>
+            <h1>Name: {{.Name}}</h1>
+            <p> 
+                Members:
                 {{range .Members}}
                     {{.}}
                 {{end}}
             </p>
             <p>
+                Creation Date:
                 {{.CreationDate}}
             </p>
+            <p>
+                FirstAlbum:
+                {{.FirstAlbum}}
+            </p>
+            <p>
+                Locations of concerts:
+                {{range .Locations.Locations}}
+                    {{.}}
+                {{end}}
+            </p>
+            <p>
+                Concert dates:
+                {{range .ConcertDates.Dates}}
+                    {{.}}
+                {{end}}
+            </p>
+            <div>
+                <ul>
+                    Locations and Concert dates:
+                    {{range $key, $value := .Relations.DatesLocation}}
+                        <li>{{$key}}: {{$value}}</li>
+                    {{end}}
+                </ul>
+            </div>
+
         </div>
         <div class="image">
             <img src="{{.Image}}" alt="{{.Name}}">
