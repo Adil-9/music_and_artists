@@ -6,23 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music</title>
     <link rel="stylesheet" href="../static/homepage.css">
-    <!-- <link rel="stylesheet" href="/static/homepage.css"> -->
+    <link rel="stylesheet" href="/static/homepage.css">
 </head>
 
 <body>
-    {{range .ArtistsArray}}
-    <a href="artist?id={{.Id}}">
-        <div class="card">
-            <img src="{{.Image}}" alt="Card Image">
-            <div class="card-content">
-                <p>{{.Name}}</p>
-                <p>{{.Members}}</p>
-                <p>{{.FirstAlbum}}</p>
-            </div>
-        </div>
-    </a>
-    {{end}}
 
+    {{if .Error }}
+        {{ .Error }}
+    {{else}}
+        {{range .ArtistsArray}}
+        <a href="artist?id={{.Id}}">
+            <div class="artist-card">
+                <div class="artist-image">
+                    <img src="{{.Image}}" alt="artist?id={{.Id}}">
+                </div>
+                <div class="artist-name">{{.Name}}</div>
+                <div class="artist-name">{{.Members}}</div>
+                <div class="artist-name">{{.FirstAlbum}}</div>
+            </div>
+        </a>
+        {{end}}
+    {{end}}
     <!-- Repeat for additional cards -->
 
 </body>
